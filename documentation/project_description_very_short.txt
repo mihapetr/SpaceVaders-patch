@@ -2,7 +2,8 @@ ime projekta: Space Vaders
 kolegij: MMS 
 autor: Iva Tutiš 
 
-Igra izradena u Processingu po direktnom uzoru na originalnu igru Tomohira Nishikada, istoimenih “Space Invaders”-a, a vizualima djelomice inspiriranih “Star Wars” franšizom.
+Igra izradena u Processingu po direktnom uzoru na originalnu igru Tomohira Nishikada, istoimenih “Space Invaders”-a, 
+a vizualima djelomice inspiriranih “Star Wars” franšizom.
 Igraca napada vojska vanzemaljskih brodova, koja se tim brže primice igracevom liku što on veci dio vojske uspije eliminirati. 
 Pritom neprijatelji pobjeduju ako uspiju doci do dna ekrana, gdje se nalazi lik igraca (to jest uspiju “invadirati” teoretsku Zemlju, koju igrac brani). 
 Igrac pobjeduje ako uspije eliminirati vojsku prije no što ga dostigne.
