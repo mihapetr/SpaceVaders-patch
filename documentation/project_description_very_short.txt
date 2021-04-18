@@ -1,8 +1,10 @@
 ime projekta: Space Vaders
 kolegij: MMS 
-autor: Iva Tutiö 
+autor: Iva Tuti≈° 
 
-Igra izradena u Processingu po direktnom uzoru na originalnu igru Tomohira Nishikada, istoimenih ìSpace Invadersî-a, a vizualima djelomice inspiriranih ìStar Warsî franöizom.
-Igraca napada vojska vanzemaljskih brodova, koja se tim brûe primice igracevom liku öto on veci dio vojske uspije eliminirati. Pritom neprijatelji pobjeduju ako uspiju doci do dna ekrana, gdje se nalazi lik igraca (to jest uspiju ìinvadiratiî teoretsku Zemlju, koju igrac brani). Igrac pobjeduje ako uspije eliminirati vojsku prije no öto ga dostigne.
+Igra izradena u Processingu po direktnom uzoru na originalnu igru Tomohira Nishikada, istoimenih ‚ÄúSpace Invaders‚Äù-a, a vizualima djelomice inspiriranih ‚ÄúStar Wars‚Äù fran≈°izom.
+Igraca napada vojska vanzemaljskih brodova, koja se tim br≈æe primice igracevom liku ≈°to on veci dio vojske uspije eliminirati. 
+Pritom neprijatelji pobjeduju ako uspiju doci do dna ekrana, gdje se nalazi lik igraca (to jest uspiju ‚Äúinvadirati‚Äù teoretsku Zemlju, koju igrac brani). 
+Igrac pobjeduje ako uspije eliminirati vojsku prije no ≈°to ga dostigne.
 
 Poveznica na projekt na Githubu: https://github.com/IvaTutis/Space-Vaders
