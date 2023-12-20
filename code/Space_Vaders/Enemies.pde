@@ -20,7 +20,7 @@ class Enemies extends AbstractGraphics{
           
           if (enemy.hasInvaded(player_x, player_y)){//player has lost [IGRAC JE IZGUBIO]
             gameflag=-1; 
-            lost_sound.play();
+            //lost_sound.play();
             return; 
           }
        }
@@ -53,7 +53,7 @@ class Enemies extends AbstractGraphics{
        //ako nema zivih neprijatelja [IGRAC JE POBJEDIO]
        if (enemies.isEmpty()){ 
          gameflag =1;
-         won_sound.play();
+         //won_sound.play();
        }
    }
 

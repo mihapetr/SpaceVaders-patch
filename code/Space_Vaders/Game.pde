@@ -58,7 +58,7 @@ void increaseScore(int x){
 //......................................Pucanje...................................
 //funkcija koja dodaje bullet novi u listu kada se ispuca
 void playerShootsBullet(int x, int y){
-        bullet_sound.play();
+        //bullet_sound.play();
         bulletList.addBullet(x,y);
 }
 

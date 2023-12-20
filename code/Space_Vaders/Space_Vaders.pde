@@ -1,12 +1,22 @@
 //..........................................................DATA..........................................................  
  //pozadine za igru, menije i zavrsne screenove
  PImage game_bckgrnd, menu_bckgrnd, won_bckgrnd, lost_bckgrnd;
-//unosim file za zvuk u igru
-import processing.sound.*; 
+
+//unosim file za zvuk u igru : deprecated, ne radi
+/*import processing.sound.*; 
   SoundFile game_music;
   SoundFile won_sound;
   SoundFile lost_sound;
-  SoundFile bullet_sound;
+  SoundFile bullet_sound;*/
+
+// new audio playback
+import ddf.minim.*;
+Minim minim;
+AudioPlayer game_music;
+AudioPlayer won_sound;
+AudioPlayer lost_sound;
+AudioPlayer bullet_sound;
+
 //gumbi za početak igre i izlazak iz igre
 ButtonMenu startButton;
 ButtonExit exitButton;
@@ -40,18 +50,32 @@ void setup() {
     game_bckgrnd = new PImage();
     game_bckgrnd = loadImage("game.jpg");
     
-        //.......................load i pokretanje pozadinske glazba................. 
-    game_music= new SoundFile(this, "bkg1.mp3");
+    //.......................load i pokretanje pozadinske glazbe i zvukova................. 
+
+	// we pass this to Minim so that it can load files from the data directory
+	minim = new Minim(this);
+	game_music = minim.loadFile("bkg1.wav");
+
+	// sfx
+	lost_sound = minim.loadFile("lost.wav");
+	won_sound = minim.loadFile("won.wav");
+	bullet_sound = minim.loadFile("bullet.wav");
+
+	// deprecated
+    //game_music= new SoundFile(this, "bkg1.mp3");  
+    /*game_music= new SoundFile(this, "bkg1.wav");
     game_music.rate(0.8);
     game_music.amp(0.5);
     game_music.loop();
+
+    //lost_sound= new SoundFile(this, "lost.mp3");  // deprecated
+    lost_sound= new SoundFile(this, "lost.wav");
+    //won_sound= new SoundFile(this, "won.mp3");  //deprecated
+    won_sound= new SoundFile(this, "won.wav");
+    // bullet_sound= new SoundFile(this, "bullet.mp3");
+    bullet_sound= new SoundFile(this, "bullet.wav");
     
-        //......................load reaktivnih zvukova u igri....................
-    lost_sound= new SoundFile(this, "lost.mp3");
-    won_sound= new SoundFile(this, "won.mp3");
-    bullet_sound= new SoundFile(this, "bullet.mp3");
-    
-    bullet_sound.amp(0.2);
+    bullet_sound.amp(0.2);*/
     
      //.......................inicijalizacija objekata gumba za menu...................
   
@@ -85,20 +109,20 @@ void setup() {
 //funkcija koja opetovano crta igru
 void draw() {
     if (gameflag==0){ //menu
-      background(menu_bckgrnd);
+      	background(menu_bckgrnd);
           
           
-    }else if (gameflag==1){ //pobjednicki ekran
-      background(won_bckgrnd);
+    } else if (gameflag==1){ //pobjednicki ekran
+      	background(won_bckgrnd);
       
       
-    }else if (gameflag==-1){ //gubitnicki ekran
-      background(lost_bckgrnd);
+    } else if (gameflag==-1){ //gubitnicki ekran
+      	background(lost_bckgrnd);
       
       
-    }else if(gameflag==2){ //igra 
-      background(game_bckgrnd);
-      game.draw();
+    } else if(gameflag==2){ //igra 
+    	background(game_bckgrnd);
+    	game.draw();
     }
     
 }

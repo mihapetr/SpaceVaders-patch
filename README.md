@@ -1,7 +1,7 @@
 # Space-Vaders
 Multimedia Systems project- a game similar to Space Invaders by Tomohiro Nishikado
 
-##To-do list (further improvements)
+## To-do list (further improvements)
 1. polish documentation where needed
 	
 2. add comments to code where they were accidentally omitted
@@ -17,3 +17,4 @@ Multimedia Systems project- a game similar to Space Invaders by Tomohiro Nishika
 7. the code for object .draw() and .update() functions could be further improved upon, separated and cleaned up
 	
 8. ...
+
