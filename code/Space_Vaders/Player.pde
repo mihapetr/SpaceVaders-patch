@@ -54,22 +54,23 @@ class Player extends Character {
 
     void update() {
 
-        x += moveDir;   // update positition
+        x += moveDir;   // update position
         
+        // if player wants to shoot and the delay is allowing it
         if (shoot && canShoot) {
             game.playerShootsBullet(x,y);
             canShoot = false;
             shootdelay = 0;
         }
 
+        // update shoot delay
         shootdelay++;
-        
         if (shootdelay >= 20) {
             canShoot = true;
         }
     }
    
-   //reset igrača
+    //reset igrača
     void reset(){
 
         //reset koordinata

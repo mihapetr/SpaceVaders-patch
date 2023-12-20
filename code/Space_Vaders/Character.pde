@@ -1,4 +1,5 @@
 class Character extends AbstractGraphics{
+
     int x, y;
     String sprite[];
     color baseColor = color(255, 255, 255);
@@ -22,13 +23,12 @@ class Character extends AbstractGraphics{
             String row = (String) sprite[i];
 
             for (int j = 0; j < row.length(); j++) {
-                if (row.charAt(j) == '1') {
-                    rect(xpos+(j * pixelsize), ypos+(i * pixelsize), pixelsize, pixelsize);
+                if (row.charAt(j) == '1' || row.charAt(j) == 'o') {
+                    rect(xpos + (j * pixelsize), ypos + (i * pixelsize), pixelsize, pixelsize);
                 }
             }
         }
     }
 
-    void update() {
-    }
+    void update() {}
 }

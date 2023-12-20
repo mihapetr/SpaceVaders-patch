@@ -90,6 +90,7 @@ void setup() {
 void draw() {
         
 	switch (gameflag) {
+		
 		case 2 :	// game in progress
 			background(game_bckgrnd);
     		game.draw();
@@ -107,9 +108,11 @@ void draw() {
 }
     
 void keyPressed() {
+
 	game.player.keyPressed(keyCode);
 }
 
 void keyReleased() {
+
 	game.player.keyReleased(keyCode);
 }
