@@ -44,6 +44,7 @@ class Enemies extends AbstractGraphics{
                     enemies.remove(i);
                     updateVelocity();
                 } else {
+                    enemy.update();
                     enemy.draw();
                 }
             }

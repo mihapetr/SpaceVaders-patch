@@ -4,10 +4,11 @@ class Bullets extends AbstractGraphics{
   Bullets(){}
   
   void update(){
-     for (int i = 0; i < bullets.size(); i++) {
-                Bullet bullet = (Bullet) bullets.get(i);
-                bullet.draw();
-            }
+	  
+	for (int i = 0; i < bullets.size(); i++) {
+    	Bullet bullet = (Bullet) bullets.get(i);
+    	bullet.draw();
+	}
   }
   
   void addBullet(int x,int y){

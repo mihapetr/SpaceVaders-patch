@@ -1,8 +1,14 @@
 class Player extends Character {
+
     boolean canShoot = true;
     int shootdelay = 0;
 
+    int moveSpeed = 5;
+    int moveDir = 0; 
+    boolean shoot = false;
+
     Player() {
+
         x = width/gridsize/2;
         y = height - (10 * pixelsize);
         sprite    = new String[5];
@@ -13,16 +19,44 @@ class Player extends Character {
         sprite[4] = "0100010";
     }
 
+    // space == 32
+    void keyPressed(int keyCode) {
+
+        //print(keyCode);   // debug
+        switch (keyCode) {
+            case LEFT :
+                moveDir = -moveSpeed;
+            break;	
+            case RIGHT :
+                moveDir = moveSpeed;
+            break;	
+            case 32 :
+                shoot = true;
+            break;	
+        }
+    }
+
+    void keyReleased(int keyCode) {
+
+        //print(keyCode);    // debug
+        switch (keyCode) {
+            case LEFT :
+                moveDir = 0;
+            break;	
+            case RIGHT :
+                moveDir = 0;
+            break;	
+            case 32 :
+                shoot = false;
+            break;	
+        }
+    }
+
     void update() {
-        if (keyPressed && keyCode == LEFT) {
-            x -= 5;
-        }
+
+        x += moveDir;   // update positition
         
-        if (keyPressed && keyCode == RIGHT) {
-            x += 5;
-        }
-        
-        if (keyPressed && key == ' ' && canShoot) {
+        if (shoot && canShoot) {
             game.playerShootsBullet(x,y);
             canShoot = false;
             shootdelay = 0;
@@ -37,8 +71,9 @@ class Player extends Character {
    
    //reset igrača
     void reset(){
-            //reset koordinata
-            x = width/gridsize/2;
-            y = height - (10 * pixelsize);
+
+        //reset koordinata
+        x = width/gridsize/2;
+        y = height - (10 * pixelsize);
     }
 }

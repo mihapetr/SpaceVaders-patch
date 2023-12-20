@@ -5,11 +5,15 @@ class Character extends AbstractGraphics{
     color nextColor = baseColor;
 
     void draw() {
-        update();
+        
+        // removing update() because it is better to update in the game loop
+        // respecting the specification of the Character.draw() function
+        //update(); 
         drawSprite(x, y);
     }
 
     void drawSprite(int xpos, int ypos) {
+
         fill(nextColor);
         
         nextColor = baseColor;

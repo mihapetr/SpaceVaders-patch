@@ -60,24 +60,8 @@ void setup() {
 	lost_sound = minim.loadFile("lost.wav");
 	won_sound = minim.loadFile("won.wav");
 	bullet_sound = minim.loadFile("bullet.wav");
-
-	// deprecated
-    //game_music= new SoundFile(this, "bkg1.mp3");  
-    /*game_music= new SoundFile(this, "bkg1.wav");
-    game_music.rate(0.8);
-    game_music.amp(0.5);
-    game_music.loop();
-
-    //lost_sound= new SoundFile(this, "lost.mp3");  // deprecated
-    lost_sound= new SoundFile(this, "lost.wav");
-    //won_sound= new SoundFile(this, "won.mp3");  //deprecated
-    won_sound= new SoundFile(this, "won.wav");
-    // bullet_sound= new SoundFile(this, "bullet.mp3");
-    bullet_sound= new SoundFile(this, "bullet.wav");
     
-    bullet_sound.amp(0.2);*/
-    
-     //.......................inicijalizacija objekata gumba za menu...................
+    //.......................inicijalizacija objekata gumba za menu...................
   
     startButton = new ButtonMenu();
     startButton.setX(113);
@@ -91,9 +75,8 @@ void setup() {
     exitButton.setWidth(112);
     exitButton.setHeight(73);
     
-    
     //............................inicijalizacija igre.......................
-    gameflag=0;
+    gameflag = 0;
     game = new Game();
 
     //............................inicijaliza
@@ -101,29 +84,32 @@ void setup() {
 }
 
 //..........................................................DRAW..........................................................
-//flag za igru:
-//0 je menu
-//1 je pobjeda
-//-1 je gubitak
-//2 je igra
-//funkcija koja opetovano crta igru
+
+// replaced ifelse with switch
+// placed the case flag==2 as the first case to save CPU time
 void draw() {
-    if (gameflag==0){ //menu
-      	background(menu_bckgrnd);
-          
-          
-    } else if (gameflag==1){ //pobjednicki ekran
-      	background(won_bckgrnd);
-      
-      
-    } else if (gameflag==-1){ //gubitnicki ekran
-      	background(lost_bckgrnd);
-      
-      
-    } else if(gameflag==2){ //igra 
-    	background(game_bckgrnd);
-    	game.draw();
-    }
-    
+        
+	switch (gameflag) {
+		case 2 :	// game in progress
+			background(game_bckgrnd);
+    		game.draw();
+		break;
+		case 0 :	// in menu
+			background(menu_bckgrnd);
+		break;	
+		case 1 :	// player won
+			background(won_bckgrnd);
+		break;	
+		case -1 :	// player lost
+			background(lost_bckgrnd);
+		break;		
+	}
 }
     
+void keyPressed() {
+	game.player.keyPressed(keyCode);
+}
+
+void keyReleased() {
+	game.player.keyReleased(keyCode);
+}
