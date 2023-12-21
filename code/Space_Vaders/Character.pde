@@ -1,9 +1,11 @@
 class Character extends AbstractGraphics{
 
     int x, y;
+    float fx, fy;
     String sprite[];
     color baseColor = color(255, 255, 255);
     color nextColor = baseColor;
+
 
     void draw() {
         

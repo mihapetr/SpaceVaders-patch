@@ -2,14 +2,17 @@
 class Enemy extends Character {
 
     int life = 1;
-    int velocity=2;
+    float velocity = 1;
     int direction = 1;
     boolean increment_y=false;
+    Hitbox hitbox;
     
     Enemy(int xpos, int ypos) {
 
         x = xpos;
+        fx = (float)xpos;
         y = ypos;
+        fy = (float)ypos;
         sprite    = new String[5];
         sprite[0] = "0001000";
         sprite[1] = "0011100";
@@ -23,6 +26,8 @@ class Enemy extends Character {
         sprite[2] = " o o o ";
         sprite[3] = "ooooooo";
         sprite[4] = "oo o oo";
+
+        this.hitbox = new Hitbox(this, 0, 0, gridsize, columnSize);
     }
     
     void updateVelocity() {
@@ -32,7 +37,7 @@ class Enemy extends Character {
 
     void update() {
 
-        if (frameCount%30 == 0) {
+        if (frameCount%5 == 0) {
 
             x += direction * velocity;
         }
@@ -46,12 +51,12 @@ class Enemy extends Character {
     boolean alive() {
       
       	//updateamo broj zivota
-        if (game.enemyWasShot(x,y) == true){
+        /*if (game.enemyWasShot(x,y) == true){
 
             //oduzimamo 1 život i mijenjamo boju pogođenog u crveno
             life--;
             nextColor = color(255, 0, 0);
-        }
+        }*/
         
         //je li mrtav?
         if(life<=0){

@@ -1,6 +1,7 @@
 class Bullet extends AbstractGraphics{
 
     int x, y;
+    int velocity = pixelsize * 2;
 
     Bullet(int xpos, int ypos) {
 
@@ -8,10 +9,14 @@ class Bullet extends AbstractGraphics{
         y = ypos;
     }
 
+    void update() {
+
+        y -= velocity;
+    }
+
     void draw() {
         
         fill(255);
         rect(x, y, pixelsize, pixelsize);
-        y -= pixelsize * 2;
     }
 }

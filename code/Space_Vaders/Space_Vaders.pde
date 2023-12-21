@@ -35,6 +35,7 @@ void setup() {
     //konstruiram prozor
     noStroke();
     size(800, 550);
+    frameRate(60);
     
       //.............................load pozadinskih slika..............................
     

@@ -6,6 +6,19 @@ class Bullets extends AbstractGraphics{
 	
 	void update(){
 
+		/*for (int i = 0; i < bullets.size(); i++) {
+			
+			Bullet bullet = (Bullet) bullets.get(i);
+			bullet.update();
+		}*/
+
+		for (Object o : bullets) {
+			((Bullet)o).update();
+		}
+	}
+
+	void draw() {
+
 		for (int i = 0; i < bullets.size(); i++) {
 			
 			Bullet bullet = (Bullet) bullets.get(i);
@@ -24,8 +37,9 @@ class Bullets extends AbstractGraphics{
 		bullets.clear();
 	}
 
+	// DEPRECATED
 	//funkcija koja javlja je li neprijatelj s koordinatama x i y pogođen, i ako jest, unosi promjene
- 	boolean enemyWasShot(int x, int y) {
+ 	/*boolean enemyWasShot(int x, int y) {
 
         //provjeravamo je li ga ijedan metak pogodio
         for (int i = 0; i < bullets.size(); i++) {
@@ -50,5 +64,5 @@ class Bullets extends AbstractGraphics{
     
       //ako ga nije pogodio niti jedan metak, stigli smo do ovdje
       return false;
-    }
+    }*/
 }
