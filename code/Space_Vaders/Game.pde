@@ -6,16 +6,21 @@ class Game{
     Player player;
     Enemies enemyArmy;
     Bullets bulletList;
+	Plate p;
 
     //data
     int score = 0;
+	int kills = 0;
 
     //konstruktor
     Game() {
 
         player = new Player();
-        enemyArmy = new Enemies(70);    
+        enemyArmy = new Enemies(this, 70);    
         bulletList = new Bullets();
+
+		//testing
+		p = new Plate(this, 100, 500, 50, 10);
     }
 
     //........................................KONTROLA TOKA........................................
@@ -23,7 +28,7 @@ class Game{
     //funkcija koja crta igru
     void draw(){  
 
-        drawScore(); 
+		background(0);
         
         player.update();
         player.draw();  
@@ -33,6 +38,11 @@ class Game{
 
         enemyArmy.update(player.x, player.y);   
         enemyArmy.draw();
+
+		drawScore(); 
+
+		if(p.isHit() != null) print("oh no shield");
+		p.draw();
     }
 
     //funkcija koja resetira igru
@@ -65,6 +75,7 @@ class Game{
     void increaseScore(int x){
 
         score+=x;
+		kills += 1;
     }
 
     //......................................Pucanje...................................

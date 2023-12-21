@@ -1,3 +1,7 @@
+// temp polishing
+int xOffset;
+int yOffset;
+
 //..........................................................DATA..........................................................  
  //pozadine za igru, menije i zavrsne screenove
  PImage game_bckgrnd, menu_bckgrnd, won_bckgrnd, lost_bckgrnd;
@@ -34,7 +38,7 @@ void setup() {
  
     //konstruiram prozor
     noStroke();
-    size(800, 550);
+    size(1280, 720);	// HD
     frameRate(60);
     
       //.............................load pozadinskih slika..............................
@@ -50,6 +54,10 @@ void setup() {
     
     game_bckgrnd = new PImage();
     game_bckgrnd = loadImage("game.jpg");
+
+	// temporary polishing 
+	xOffset = (width - menu_bckgrnd.width) / 2;
+	yOffset = (height - menu_bckgrnd.height) / 2;
     
     //.......................load i pokretanje pozadinske glazbe i zvukova................. 
 
@@ -63,16 +71,17 @@ void setup() {
 	bullet_sound = minim.loadFile("bullet.wav");
     
     //.......................inicijalizacija objekata gumba za menu...................
-  
+
+
     startButton = new ButtonMenu();
-    startButton.setX(113);
-    startButton.setY(102);
+    startButton.setX(113 + xOffset);
+    startButton.setY(102 + yOffset);
     startButton.setWidth(123);
     startButton.setHeight(70);
     
     exitButton = new ButtonExit();
-    exitButton.setX(120);
-    exitButton.setY(238);
+    exitButton.setX(120 + xOffset);
+    exitButton.setY(238 + yOffset);
     exitButton.setWidth(112);
     exitButton.setHeight(73);
     
@@ -82,6 +91,7 @@ void setup() {
 
     //............................inicijaliza
     f = createFont("Arial", 36, true);
+
 }
 
 //..........................................................DRAW..........................................................
@@ -93,17 +103,17 @@ void draw() {
 	switch (gameflag) {
 		
 		case 2 :	// game in progress
-			background(game_bckgrnd);
+			//image(game_bckgrnd, 0, 0);	// decided black was good for now
     		game.draw();
 		break;
 		case 0 :	// in menu
-			background(menu_bckgrnd);
+			image(menu_bckgrnd, xOffset, yOffset);
 		break;	
 		case 1 :	// player won
-			background(won_bckgrnd);
+			image(won_bckgrnd, xOffset, yOffset);
 		break;	
 		case -1 :	// player lost
-			background(lost_bckgrnd);
+			image(lost_bckgrnd, xOffset, yOffset);
 		break;		
 	}
 }

@@ -17,6 +17,14 @@ class Bullets extends AbstractGraphics{
 		}
 	}
 
+	void remove(Bullet target) {
+
+		for (int i = 0; i < bullets.size(); ++i) {
+			
+			if(target.y == ((Bullet)bullets.get(i)).y) bullets.remove(i);
+		}
+	}
+
 	void draw() {
 
 		for (int i = 0; i < bullets.size(); i++) {

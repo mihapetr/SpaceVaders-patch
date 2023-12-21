@@ -5,13 +5,14 @@ class Enemies extends AbstractGraphics{
 	
 	/**
 	Greater altitude means the army starts closer to the player.
+	game is a reference to the Game object running the game.
 	*/
-	Enemies(int altitude) {
+	Enemies(Game game, int altitude) {
 
 		for (int i = 0; i < width/gridsize/2; i++) {
 			for (int j = 0; j <= 5; j++) {
 
-				enemies.add(new Enemy(i*gridsize, j*gridsize + altitude));
+				enemies.add(new Enemy(game, i*gridsize, j*gridsize + altitude));
 			}
 		}
 	}
@@ -23,6 +24,16 @@ class Enemies extends AbstractGraphics{
 
 			Enemy enemy = (Enemy)_enemy;	// explicit cast
 			enemy.draw();
+		}
+	}
+
+	void remove(Enemy target) {
+
+		Enemy element;
+		for (int i = 0; i < enemies.size(); ++i) {
+
+			element = (Enemy)enemies.get(i);
+			if(target.x == element.x && target.y == element.y) enemies.remove(i);
 		}
 	}
   
@@ -103,7 +114,7 @@ class Enemies extends AbstractGraphics{
 		for (int i = 0; i < width/gridsize/2; i++) {
 			for (int j = 0; j <= 5; j++) {
 
-				enemies.add(new Enemy(i*gridsize, j*gridsize + altitude));
+				enemies.add(new Enemy(game, i*gridsize, j*gridsize + altitude));
 			}
 		}
 	}

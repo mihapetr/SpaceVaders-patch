@@ -65,7 +65,7 @@ class Player extends Character {
 
         // update shoot delay
         shootdelay++;
-        if (shootdelay >= 20) {
+        if (shootdelay >= 30) {
             canShoot = true;
         }
     }
