@@ -6,21 +6,25 @@ class Game{
     Player player;
     Enemies enemyArmy;
     Bullets bulletList;
-	Plate p;
+	ArrayList<Shield> shields = new ArrayList<Shield>();
 
     //data
     int score = 0;
 	int kills = 0;
+    int lives = 2;
 
     //konstruktor
     Game() {
 
-        player = new Player();
+        player = new Player(this);
         enemyArmy = new Enemies(this, 70);    
         bulletList = new Bullets();
 
 		//testing
-		p = new Plate(this, 100, 500, 50, 10);
+        int pixelsize = 4;
+		shields.add(new Shield(this, width/2, height - 10*pixelsize - 15*pixelsize));
+        shields.add(new Shield(this, width/4, height - 10*pixelsize - 15*pixelsize));
+        shields.add(new Shield(this, 3*width/4, height - 10*pixelsize - 15*pixelsize));
     }
 
     //........................................KONTROLA TOKA........................................
@@ -29,20 +33,32 @@ class Game{
     void draw(){  
 
 		background(0);
+        removeExcessBullets();
         
         player.update();
         player.draw();  
 
-        bulletList.update();    // updates and draws :/
-        bulletList.draw();
+        for (Shield s : shields) {
+
+            s.update();
+            s.draw();
+        }
 
         enemyArmy.update(player.x, player.y);   
         enemyArmy.draw();
 
-		drawScore(); 
+        bulletList.update();   
+        bulletList.draw();
 
-		if(p.isHit() != null) print("oh no shield");
-		p.draw();
+		drawScore(); 
+    }
+
+    /**
+    Removes bullets out of screen bounds.
+    */
+    void removeExcessBullets(){
+
+        bulletList.removeExcess();
     }
 
     //funkcija koja resetira igru
@@ -55,6 +71,7 @@ class Game{
             
         //reset score-a
         score=0;
+        game_music.play();
     }
 
     //.......................................Score.........................................
@@ -63,7 +80,8 @@ class Game{
     void drawScore() {
 
         textFont(f);
-        text("Score: " + String.valueOf(score), 300, 50);
+        text("Score: " + String.valueOf(score), 50, 50);
+        text("Extra lives: " + String.valueOf(lives), width - 400, 50);
     }
 
     //uvecaj score kad je neprijatelj ubijen
@@ -86,16 +104,4 @@ class Game{
         //bullet_sound.play();
         bulletList.addBullet(x,y);
     }
-
-    //funkcija koja javlja je li neprijatelj s koordinatama x i y pogođen, i ako jest, unosi promjene
-    /*boolean enemyWasShot(int x, int y){
-
-        //provjeravamo je li ga ijedan metak pogodio
-            if (bulletList.enemyWasShot(x,y)){              ;
-                return true;
-            }
-        
-        //ako nije pogođen 
-        return false;
-    }*/
 }

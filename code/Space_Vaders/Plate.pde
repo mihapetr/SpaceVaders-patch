@@ -1,28 +1,29 @@
 /**
 A class designed to represent destructable elementary parts of a shield 
 */
-public class Plate {
+public class Plate extends Character {
 
-    int x, y;
-    int width, height;
     Game game;
+    Shield shield;  // reference to the shield it belongs to
     Hitbox hitbox;
 
-    public Plate (Game game, int x, int y, int width, int height) {
+    public Plate (Game game, Shield shield, int xpos, int ypos) {
         
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        x = xpos;
+        y = ypos;
         this.game = game;
+        this.shield = shield;
+        sprite = new String[1];
+        sprite[0] = "1";
+        pixelsize = 8;
+        baseColor = color(0, 255, 0);
 
-        hitbox = new Hitbox(this, 0, 0, this.width, this.height);
+        hitbox = new Hitbox(this, 0, 0, pixelsize, pixelsize);
     }
 
     void draw() {
 
-        fill(50,255,50);
-        rect(x, y, width, height);
+        drawSprite(x,y);
     }
 
     /**
@@ -30,19 +31,6 @@ public class Plate {
     If no bullet was found returns null.
     */
     Bullet isHit() {
-        
-        Bullet b;
-        for (Object o : game.bulletList.bullets) {
-
-            b = (Bullet)o;  //cast
-            if(this.hitbox.inside(b.x, b.y)) {
-                
-                print("inside");
-                return b;
-            }
-        }
-
-        // if no bullet was found returns null
-        return null;
+        return this.hitbox.isHit();
     }
 }

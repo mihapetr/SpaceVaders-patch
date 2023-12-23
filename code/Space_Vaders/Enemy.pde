@@ -17,9 +17,8 @@ class Enemy extends Character {
         this.game = game;
 
         x = xpos;
-        fx = (float)xpos;
         y = ypos;
-        fy = (float)ypos;
+    
         sprite    = new String[5];
         sprite[0] = "0001000";
         sprite[1] = "0011100";
@@ -66,21 +65,8 @@ class Enemy extends Character {
         }
     }
 
-    /**
-    Runs through all bullets in the game:Game and checks if some have hit the enemies hitbox.
-    If no bullet was found returns null.
-    */
     Bullet isHit() {
-        
-        Bullet b;
-        for (Object o : game.bulletList.bullets) {
-
-            b = (Bullet)o;  //cast
-            if(this.hitbox.inside(b.x, b.y)) return b;
-        }
-
-        // if no bullet was found returns null
-        return null;
+        return this.hitbox.isHit();
     }
 
     // deprecated

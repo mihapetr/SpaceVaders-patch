@@ -38,7 +38,8 @@ void setup() {
  
     //konstruiram prozor
     noStroke();
-    size(1280, 720);	// HD
+    //size(1000, 680);	// HD
+    fullScreen();
     frameRate(60);
     
       //.............................load pozadinskih slika..............................
@@ -64,11 +65,12 @@ void setup() {
 	// we pass this to Minim so that it can load files from the data directory
 	minim = new Minim(this);
 	game_music = minim.loadFile("bkg1.wav");
+    game_music.play();
 
 	// sfx
 	lost_sound = minim.loadFile("lost.wav");
 	won_sound = minim.loadFile("won.wav");
-	bullet_sound = minim.loadFile("bullet.wav");
+	//bullet_sound = minim.loadFile("blaster.mp3");
     
     //.......................inicijalizacija objekata gumba za menu...................
 
@@ -107,12 +109,20 @@ void draw() {
     		game.draw();
 		break;
 		case 0 :	// in menu
+			background(0);
 			image(menu_bckgrnd, xOffset, yOffset);
+      		//game.draw();
 		break;	
 		case 1 :	// player won
+			background(0);
+      		game_music.pause();
+			won_sound.play();
 			image(won_bckgrnd, xOffset, yOffset);
 		break;	
 		case -1 :	// player lost
+			background(0);
+      		game_music.pause();
+			lost_sound.play();
 			image(lost_bckgrnd, xOffset, yOffset);
 		break;		
 	}

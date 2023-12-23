@@ -2,6 +2,8 @@
 class Enemies extends AbstractGraphics{
 
 	ArrayList enemies = new ArrayList();
+	int shootPause = 30;	// # of frames
+	int shootTimer = 0;
 	
 	/**
 	Greater altitude means the army starts closer to the player.
@@ -66,22 +68,11 @@ class Enemies extends AbstractGraphics{
 			}
 		}
 			
-		//provjerava je li koji neprijatelj pogodjen
+		// updates all enemies in the army
 		for (int i = 0; i < enemies.size(); i++) {
 
 			Enemy enemy = (Enemy) enemies.get(i);
 			enemy.update();
-
-			/*if (!enemy.alive()) {
-
-				enemies.remove(i);
-				updateVelocity();
-			} 
-			else {*/
-
-				//enemy.update();
-				//enemy.draw();
-			//}
 		}
 				
 		setIncrementY(false);
@@ -91,6 +82,29 @@ class Enemies extends AbstractGraphics{
 
 			gameflag =1;
 			//won_sound.play();
+		}
+
+		// this block controls the enemies shooting at the ally
+		shootTimer++;
+		if(shootTimer >= shootPause) {
+
+			shootTimer = 0;
+			// find frontline enemies who can shoot without damaging their own
+			ArrayList<Enemy> frontline = new ArrayList<Enemy>();
+			Enemy e;
+			int maxY = -1;
+			for (int i = enemies.size()-1; i >= 0; --i) {
+				
+				e = (Enemy)enemies.get(i);
+				if(e.y > maxY) maxY = e.y;
+				if(e.y == maxY) frontline.add(e);
+			}
+
+			// make a random one shoot
+			e = frontline.get(
+					(int)random(0, frontline.size())
+				);
+			game.bulletList.addEnemyBullet(e.x, e.y+4*6);
 		}
 	}
 
@@ -105,7 +119,7 @@ class Enemies extends AbstractGraphics{
 		}
 	}
   
-  //funkcija za reset
+ 	//funkcija za reset
 	void reset(int altitude){
 
 		enemies.clear();

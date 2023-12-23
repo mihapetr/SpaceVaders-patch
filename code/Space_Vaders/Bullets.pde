@@ -12,8 +12,23 @@ class Bullets extends AbstractGraphics{
 			bullet.update();
 		}*/
 
+		Bullet b;
 		for (Object o : bullets) {
-			((Bullet)o).update();
+
+			b = (Bullet)o;
+			b.update();
+		}
+	}
+
+	void removeExcess() {
+
+		Bullet b;
+		for (int i = 0; i < bullets.size(); ++i) {
+			b = (Bullet)bullets.get(i);
+			if(b.y < 0) {
+				bullets.remove(i);
+				return;
+			}
 		}
 	}
 
@@ -36,7 +51,14 @@ class Bullets extends AbstractGraphics{
 	
 	void addBullet(int x,int y){
 		
-		bullets.add(new Bullet(x, y));
+		bullets.add(new Bullet(this, x, y, -1));
+		//bullet_sound.play();
+	}
+
+	void addEnemyBullet(int x, int y) {
+
+		bullets.add(new Bullet(this, x, y, 1));
+		//bullet_sound.play();
 	}
 	
 	//resetira metke
